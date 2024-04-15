@@ -35,6 +35,15 @@ return [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => false,
         ],*/
+        'request' => [
+            'csrfParam' => '_csrf-frontend',
+            'csrfCookie'=>array(
+				'secure'=>true,
+				'httpOnly'=>true,
+				'sameSite'=>"Lax"
+			),
+
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
