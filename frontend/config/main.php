@@ -48,6 +48,11 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
+            'csrfCookie'=>array(
+				'secure'=>true,
+				'httpOnly'=>true,
+				'sameSite'=>"Lax"
+			),
 
         ],
         'view' => [
