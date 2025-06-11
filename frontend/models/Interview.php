@@ -34,13 +34,15 @@ use Da\User\Model\User;
  *
  * @property Interviewee $interviewee
  */
+//#[\AllowDynamicProperties]  // Add this attribute to allow dynamic properties
 class Interview extends \yii\db\ActiveRecord
 {
     public $files;
     public $query;
-    private $sexo; 
-    private $pronouns;
-    private $genders;
+    public $sexo;     // Keep these for form usage
+    public $pronouns; 
+    public $genders;
+
     /**
      * {@inheritdoc}
      */

@@ -87,11 +87,20 @@ echo Tabs::widget([
             'languageName',
             'interviewerName',
             'migrationName',
-            'sexo',
-            'pronouns',
+            // Use method calls instead of property access
+            [
+                'attribute' => 'sexo',
+                'value' => function($model) { return $model->getSexo(); }
+            ],
+            [
+                'attribute' => 'pronouns',
+                'value' => function($model) { return $model->getPronouns(); }
+            ],
             'transgenderText',
-            //'genderName',
-            'genders',
+            [
+                'attribute' => 'genders',
+                'value' => function($model) { return $model->getGenders(); }
+            ],
             'date',   
             //'migrationStatus',      
             //'transgender',        
@@ -159,11 +168,20 @@ echo Tabs::widget([
             'languageName',
             'interviewerName',
             'migrationName',
-            'sexo',
-            'pronouns',
+            // Use method calls instead of property access
+            [
+                'attribute' => 'sexo',
+                'value' => function($model) { return $model->getSexo(); }
+            ],
+            [
+                'attribute' => 'pronouns',
+                'value' => function($model) { return $model->getPronouns(); }
+            ],
             'transgenderText',
-            //'genderName',
-            'genders',
+            [
+                'attribute' => 'genders',
+                'value' => function($model) { return $model->getGenders(); }
+            ],
             'date',   
             //'migrationStatus',      
             //'transgender',        
