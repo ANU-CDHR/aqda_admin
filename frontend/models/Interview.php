@@ -38,6 +38,9 @@ class Interview extends \yii\db\ActiveRecord
 {
     public $files;
     public $query;
+    private $sexo; 
+    private $pronouns;
+    private $genders;
     /**
      * {@inheritdoc}
      */
@@ -53,7 +56,7 @@ class Interview extends \yii\db\ActiveRecord
     {
         return [
             [['intervieweeLocation', 'date', 'intervieweeId', 'interviewerId', 'published', 'createUserId','sexo','languageId','migrationId','lat','lng','accessionName'], 'required'],
-            [['query','date','intervieweeName','interviewerName','lat','lng','sexo','userName'], 'safe'],
+            [['query','date','intervieweeName','interviewerName','lat','lng','sexo','userName','pronouns','genders'], 'safe'],
             [['contextual'], 'string'],
             [['transgender', 'intervieweeId', 'interviewerId', 'isCitizen', 'pseudonym', 'videoDistortion', 'voiceChange', 'refugeeCamp', 'published', 'createUserId','languageId','migrationId','genderId'], 'integer'],
             [['imageFile','accessionName', 'narratorNameD'], 'string', 'max' => 100],

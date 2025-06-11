@@ -139,9 +139,12 @@ JS
 <?php 
         $sexos = ArrayHelper::map(SexualOrientation::find()->orderBy('value')->all(),'id', 'value'); 
         $msexos = ArrayHelper::getColumn($model->interviewsexos,'sexoId'); 
-        if(sizeof($msexos)==0)$tsexos=[];
-        else
-        $tsexos = explode(",",$model->sexo);
+        if(sizeof($msexos)==0){
+            $tsexos=[];
+        } else {
+            $selectedSexos = SexualOrientation::find()->where(['id' => $msexos])->all();
+            $tsexos = ArrayHelper::getColumn($selectedSexos, 'value');
+        }
         $model->sexo = $msexos;
         $url = \yii\helpers\Url::to(['interview/sexolist']);
         echo $form->field($model, 'sexo')->label('Sexual Orientation')->widget(Select2::classname(), [
@@ -177,9 +180,12 @@ JS
 <?php 
         $pronouns = ArrayHelper::map(Pronouns::find()->orderBy('value')->all(),'id', 'value'); 
         $mpronouns = ArrayHelper::getColumn($model->interviewprons,'pronounsId'); 
-        if(sizeof($mpronouns)==0)$tpronouns=[];
-        else
-        $tpronouns = explode(",",$model->pronouns);
+        if(sizeof($mpronouns)==0){
+            $tpronouns=[];
+        } else {
+            $selectedPronouns = Pronouns::find()->where(['id' => $mpronouns])->all();
+            $tpronouns = ArrayHelper::getColumn($selectedPronouns, 'value');
+        }
         $model->pronouns = $mpronouns;
         $url = \yii\helpers\Url::to(['interview/pronounslist']);
         echo $form->field($model, 'pronouns')->label('Pronouns')->widget(Select2::classname(), [
@@ -220,11 +226,14 @@ JS
     'uncheckValue'=>0,'checked'=>($model->transgender==1)?true:false)) ?>
 
 <?php 
-        $genders = ArrayHelper::map(Pronouns::find()->orderBy('value')->all(),'id', 'value'); 
+        $genders = ArrayHelper::map(Gender::find()->orderBy('name')->all(),'id', 'name'); 
         $mgenders = ArrayHelper::getColumn($model->interviewgender,'genderId'); 
-        if(sizeof($mgenders)==0)$tgenders=[];
-        else
-        $tgenders = explode(",",$model->genders);
+        if(sizeof($mgenders)==0){
+            $tgenders=[];
+        } else {
+            $selectedGenders = Gender::find()->where(['id' => $mgenders])->all();
+            $tgenders = ArrayHelper::getColumn($selectedGenders, 'name');
+        }
         $model->genders = $mgenders;
         $url = \yii\helpers\Url::to(['interview/genderlist']);
         echo $form->field($model, 'genders')->label('Gender Identity')->widget(Select2::classname(), [

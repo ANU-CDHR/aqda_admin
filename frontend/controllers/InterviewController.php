@@ -275,9 +275,9 @@ class InterviewController extends Controller
             
             if($interviewsexos!==null&&is_array($interviewsexos))
             foreach($interviewsexos as $ss){
-                //if is not number - user filled Pronouns
+                //if is not number - user filled Sexual Orientation
                 if(!is_numeric(trim($ss))){
-                    $existingis = SexualOrientation::find()
+                    $existingSs = SexualOrientation::find()
                                 ->where(['value' => trim($ss)])
                                 ->one();
                     //double check: SexualOrientation aleady exists, link it to interview by adding to Interviewsexo table
@@ -309,9 +309,9 @@ class InterviewController extends Controller
                 //if is not number - user filled genders
                 if(!is_numeric(trim($ps))){
                     $existingPs = Gender::find()
-                                ->where(['value' => trim($ps)])
+                                ->where(['name' => trim($ps)])  // Fixed field name
                                 ->one();
-                    //double check: Genders aleady exists, link it to interview by adding to Interviewgender table
+                    //double check: Gender aleady exists, link it to interview by adding to Interviewgender table
                     if($existingPs!=null&&$existingPs->id!=null){
                         $newIps = new Interviewgender();
                         $newIps->interviewId = $id;
@@ -424,9 +424,9 @@ class InterviewController extends Controller
             }
             if($interviewsexos!==null&&is_array($interviewsexos))
             foreach($interviewsexos as $ss){
-                //if is not number - user filled Pronouns
+                //if is not number - user filled Sexual Orientation
                 if(!is_numeric(trim($ss))){
-                    $existingis = SexualOrientation::find()
+                    $existingSs = SexualOrientation::find()
                                 ->where(['value' => trim($ss)])
                                 ->one();
                     //double check: SexualOrientation aleady exists, link it to interview by adding to Interviewsexo table
@@ -462,8 +462,8 @@ class InterviewController extends Controller
             foreach($interviewgenders as $ps){
                 //if is not number - user filled gender
                 if(!is_numeric(trim($ps))){
-                    $existingPs = Genders::find()
-                                ->where(['value' => trim($ps)])
+                    $existingPs = Gender::find()
+                                ->where(['name' => trim($ps)])  // Fixed field name
                                 ->one();
                     //double check: genders aleady exists, link it to interview by adding to Interviewpron table
                     if($existingPs!=null&&$existingPs->id!=null){
